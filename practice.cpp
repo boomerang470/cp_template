@@ -1,3 +1,4 @@
+
 vector<ll> Sieve(ll L,ll R){
     ll lim = sqrt(R);
     vector<bool> mark(lim+1,true);
@@ -26,4 +27,20 @@ vector<ll> Sieve(ll L,ll R){
     }
     return ans;
 
+}
+
+
+
+ll power(ll a,ll b,ll mod=MOD){
+    ll res=1;
+    while(b>0){
+        if(b&1){
+            res = res*a;
+            res %= mod;
+        }
+        a = a*a;
+        a %= mod;
+        b = b>>1;
+    }
+    return res;
 }
