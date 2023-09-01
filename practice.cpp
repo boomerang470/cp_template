@@ -1,4 +1,4 @@
-
+//Primes in range
 vector<ll> Sieve(ll L,ll R){
     ll lim = sqrt(R);
     vector<bool> mark(lim+1,true);
@@ -30,7 +30,7 @@ vector<ll> Sieve(ll L,ll R){
 }
 
 
-
+// Binary Expo
 ll power(ll a,ll b,ll mod=MOD){
     ll res=1;
     while(b>0){
@@ -44,3 +44,22 @@ ll power(ll a,ll b,ll mod=MOD){
     }
     return res;
 }
+
+
+
+//nCr using Fermat Little Theorem
+ll modInverse(ll a,ll p){
+    return power(a,p-2,p);
+}
+
+ll nCr(ll n,ll r,ll mod=MOD){
+    vector<ll> fact(n+1);
+    fact[0]=1;
+    for(ll i=1;i<=n;i++){
+        fact[i] = (i*fact[i-1])%mod;
+    }
+
+    ll ans = (fact[n]*(modInverse(fact[n-r],mod))%mod)*(modInverse(fact[r],mod)%mod)%mod;
+    return ans;
+}
+
