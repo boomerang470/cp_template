@@ -84,3 +84,43 @@ struct FenwickTree{
         }
     }
 };
+
+
+
+
+
+
+//Trie
+struct TrieNode{
+    TrieNode* children[26];
+    bool eow;
+};
+
+TrieNode* getNode(){
+    TrieNode* pNode = new TrieNode();
+    for(int i=0;i<26;i++){
+        pNode->children[i]=nullptr;
+    }
+    pNode->eow=false;
+    return pNode;
+}
+
+void insert(TrieNode* root,string key){
+    TrieNode* curr = root;
+    for(int i=0;i<key.length();i++){
+        int idx = key[i]-'a';
+        if(!curr->children[idx]) curr->children[idx]=getNode();
+        curr = curr->children[idx];
+    }
+    curr->eow=true;
+}
+
+bool search(TrieNode* root,string key){
+    TrieNode* curr = root;
+    for(int i=0;i<key.length();i++){
+        int idx = key[i]-'a';
+        if(!curr->children[idx]) return false;
+        curr = curr->children[idx];
+    }
+    return curr->eow;
+}
